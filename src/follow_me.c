@@ -237,7 +237,7 @@ void FollowMe(struct ObjectEvent* npc, u8 state, bool8 ignoreScriptActive)
         return; //Don't follow during a script
     
     // Indicator that we may be dealing with the bike-bump glitch
-    if(state >= 0x19 && state <= 0x1C)
+    if(state >= 0x19 && state <= 0x1C && follower->invisible)
         gSaveBlock2Ptr->follower.flags |= 0x200;       
 
     // fix post-surf jump

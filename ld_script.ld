@@ -13,9 +13,6 @@ MEMORY
 /* Modify the following load addresses as needed to make more room. Alternately, delete both the
    declarations below and their references further down to get rid of the gaps.                  */
 
-__anim_mon_load_address = 0x8b00000;
-__gfx_load_address = 0x8c00000;
-
 SECTIONS {
 
     ewram 0x2000000 (NOLOAD) :
@@ -339,7 +336,8 @@ SECTIONS {
         src/gym_leader_rematch.o(.text);
         src/battle_transition_frontier.o(.text);
         src/international_string_util.o(.text);
-    } > ROM =0
+        src/follow_me.o(.text);
+    } =0
 
     script_data :
     ALIGN(4)
@@ -701,7 +699,8 @@ SECTIONS {
         data/mystery_gift.o(.rodata);
         src/m4a_tables.o(.rodata);
         data/sound_data.o(.rodata);
-    } > ROM =0
+        src/follow_me.o(.rodata);
+    } =0
 
     song_data :
     ALIGN(4)
@@ -1299,13 +1298,13 @@ SECTIONS {
         data/multiboot_pokemon_colosseum.o(.rodata);
     } > ROM =0
 
-    anim_mon_front_pic_data __anim_mon_load_address :
+    anim_mon_front_pic_data :
     ALIGN(4)
     {
         src/anim_mon_front_pics.o(.rodata);
     } > ROM =0
 
-    gfx_data __gfx_load_address :
+    gfx_data :
     ALIGN(4)
     {
         src/graphics.o(.rodata);
